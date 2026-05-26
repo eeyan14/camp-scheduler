@@ -27,6 +27,25 @@ TBD follow up with Mikki
 | Arts + crafts + carpentry | 0 | 5 | 10 | Y |
 | Free time/drum circle | 0 | 0 | 0 | - | Y | Fill in as needed once other activities are set |
 
+
+Locations + Activities
+
+```mermaid
+flowchart LR    Longhouse --- |"5 min"| FlagPole
+    FlagPole --- |"5 min"| DiningHall["Dining Hall / Cafeteria"]
+    DiningHall --- |"5 min"| Pool
+    Pool --- |"1 min"| Chapel
+    
+    MountainBiking --- |"15 min"| Longhouse
+    RockClimbing --- |"15 min"| Longhouse
+    
+    FlagPole --- |"10 min"| Horses
+    Horses --- |"10 min"| Archery
+
+    HighRopes --- |"0 min"| RockClimbing
+    DrumCircle --- |"0 min"| Pool
+```
+
 ### Requirements
 
 Each activity can have two camper groups at a time, one girls group and one boys group. The groups do not have to be similar in age. 
