@@ -38,7 +38,25 @@ Free time can be used to fill activity blocks once other activities have been co
 
 TODO photography?
 
-# Requirements
+Locations + Activities
+
+```mermaid
+flowchart LR    Longhouse --- |"5 min"| FlagPole
+    FlagPole --- |"5 min"| DiningHall["Dining Hall / Cafeteria"]
+    DiningHall --- |"5 min"| Pool
+    Pool --- |"1 min"| Chapel
+    
+    MountainBiking --- |"15 min"| Longhouse
+    RockClimbing --- |"15 min"| Longhouse
+    
+    FlagPole --- |"10 min"| Horses
+    Horses --- |"10 min"| Archery
+
+    HighRopes --- |"0 min"| RockClimbing
+    DrumCircle --- |"0 min"| Pool
+```
+
+### Requirements
 
 Each activity can have two groups at a time, and some can have more (indicated somewhere TODO). Typically it is one girls group and one boys group but can be both girls or both boys if there are not equal numbers. The groups do not have to be similar in age. 
 
