@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/pyodide/v314.0.1/full/pyodide.js"></script>
+  </head>
+
+  <body>
+    <p>
+      Click the button to run the script.
+    </p>
+    <button type="button" onclick="window.evaluatePython?.()">Run</button>
+    <br />
+    <br />
+    <div>Output:</div>
+    <textarea id="output" style="width: 100%;" rows="6" disabled></textarea>
+
+    <script type="module" src="./index.js"></script>
+  </body>
+</html>

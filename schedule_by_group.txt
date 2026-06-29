@@ -1,0 +1,215 @@
+Camp Schedule - By Group:
+
+==================== B:A/J ====================
+
+  --- Mon PM ---
+    02:15 PM - 03:00 PM : Climbing (<10)
+    04:15 PM - 05:00 PM : Biking
+
+  --- Tue AM ---
+    10:00 AM - 10:45 AM : Archery
+
+  --- Tue Lunch ---
+    12:45 PM - 01:00 PM : Portraits
+
+  --- Tue PM ---
+    04:30 PM - 05:00 PM : Horses
+
+==================== B:N/T ====================
+
+  --- Mon PM ---
+    04:45 PM - 05:30 PM : Archery
+
+  --- Tue AM ---
+    10:00 AM - 10:15 AM : Portraits
+
+  --- Tue PM ---
+    04:00 PM - 04:45 PM : Biking
+    05:00 PM - 05:45 PM : Climbing (<10)
+
+  --- Wed AM ---
+    10:00 AM - 10:30 AM : Horses
+
+==================== B:J/J ====================
+
+  --- Mon PM ---
+    02:00 PM - 02:45 PM : Archery
+    03:30 PM - 04:15 PM : Climbing (<10)
+
+  --- Tue AM ---
+    10:30 AM - 10:45 AM : Portraits
+
+  --- Tue PM ---
+    04:45 PM - 05:30 PM : Biking
+
+  --- Wed PM ---
+    04:00 PM - 04:30 PM : Horses
+
+==================== B:B/A ====================
+
+  --- Mon PM ---
+    02:00 PM - 02:30 PM : Horses
+    05:15 PM - 06:00 PM : Biking
+
+  --- Tue AM ---
+    10:00 AM - 10:45 AM : Archery
+
+  --- Tue Lunch ---
+    12:30 PM - 12:45 PM : Portraits
+
+  --- Tue PM ---
+    05:00 PM - 05:45 PM : Climbing (<10)
+
+==================== B:S/S ====================
+
+  --- Mon PM ---
+    02:15 PM - 03:00 PM : Biking
+    03:30 PM - 04:15 PM : Archery
+    05:15 PM - 06:00 PM : Climbing (<10)
+
+  --- Tue AM ---
+    10:15 AM - 10:30 AM : Portraits
+
+  --- Wed PM ---
+    04:30 PM - 05:00 PM : Horses
+
+==================== B:S/W ====================
+
+  --- Mon PM ---
+    02:30 PM - 03:00 PM : Horses
+
+  --- Tue AM ---
+    10:00 AM - 11:00 AM : Climbing (Grads)
+
+  --- Tue PM ---
+    04:00 PM - 04:45 PM : Archery
+
+  --- Wed AM ---
+    10:15 AM - 10:30 AM : Portraits
+
+  --- Wed PM ---
+    04:00 PM - 04:45 PM : Biking
+
+==================== B:D/J ====================
+
+  --- Mon PM ---
+    03:00 PM - 03:30 PM : Horses
+
+  --- Tue AM ---
+    10:00 AM - 11:00 AM : Climbing (Grads)
+
+  --- Tue Lunch ---
+    01:00 PM - 01:15 PM : Portraits
+
+  --- Tue PM ---
+    04:45 PM - 05:30 PM : Archery
+
+  --- Thu PM ---
+    04:00 PM - 04:45 PM : Biking
+
+==================== G:A/A ====================
+
+  --- Mon PM ---
+    02:15 PM - 03:00 PM : Climbing (<10)
+    03:45 PM - 04:15 PM : Horses
+    04:45 PM - 05:30 PM : Archery
+
+  --- Tue AM ---
+    10:45 AM - 11:00 AM : Portraits
+
+  --- Wed AM ---
+    10:15 AM - 11:00 AM : Biking
+
+  --- Thu AM ---
+    10:00 AM - 11:00 AM : Tea Party
+
+==================== G:E/B ====================
+
+  --- Mon PM ---
+    02:00 PM - 02:45 PM : Archery
+
+  --- Tue AM ---
+    10:15 AM - 11:00 AM : Climbing (<10)
+
+  --- Tue PM ---
+    04:00 PM - 04:30 PM : Horses
+    04:45 PM - 05:30 PM : Biking
+
+  --- Wed AM ---
+    10:30 AM - 10:45 AM : Portraits
+
+  --- Wed PM ---
+    04:00 PM - 05:00 PM : Tea Party
+
+==================== G:S/Z ====================
+
+  --- Mon PM ---
+    04:15 PM - 05:00 PM : Climbing (<10)
+    05:15 PM - 06:00 PM : Biking
+
+  --- Tue AM ---
+    10:00 AM - 11:00 AM : Tea Party
+
+  --- Tue PM ---
+    04:00 PM - 04:45 PM : Archery
+    05:00 PM - 05:30 PM : Horses
+
+  --- Wed AM ---
+    10:45 AM - 11:00 AM : Portraits
+
+==================== G:H/A ====================
+
+  --- Mon PM ---
+    03:30 PM - 04:15 PM : Archery
+    04:30 PM - 05:00 PM : Horses
+
+  --- Tue AM ---
+    10:00 AM - 11:00 AM : Climbing (Grads)
+
+  --- Wed AM ---
+    10:00 AM - 11:00 AM : Tea Party
+
+  --- Wed Lunch ---
+    12:30 PM - 12:45 PM : Portraits
+
+  --- Thu PM ---
+    04:00 PM - 04:45 PM : Biking
+
+==================== G:A/K ====================
+
+  --- Mon PM ---
+    02:45 PM - 03:30 PM : Archery
+
+  --- Tue AM ---
+    10:00 AM - 11:00 AM : Climbing (Grads)
+
+  --- Tue PM ---
+    04:45 PM - 05:45 PM : Tea Party
+
+  --- Wed AM ---
+    10:00 AM - 10:15 AM : Portraits
+    10:30 AM - 11:00 AM : Horses
+
+  --- Thu AM ---
+    10:00 AM - 10:45 AM : Biking
+
+==================== G:J/R ====================
+
+  --- Mon PM ---
+    05:00 PM - 05:30 PM : Horses
+
+  --- Tue AM ---
+    10:00 AM - 11:00 AM : Climbing (Grads)
+
+  --- Tue PM ---
+    04:45 PM - 05:30 PM : Archery
+
+  --- Wed Lunch ---
+    12:45 PM - 01:00 PM : Portraits
+
+  --- Thu AM ---
+    10:00 AM - 10:45 AM : Biking
+
+  --- Thu PM ---
+    05:00 PM - 06:00 PM : Tea Party
+
