@@ -6,19 +6,32 @@ function addToOutput(message) {
   if (!output) {
     return;
   }
+
+  output.value += message + '\n';
 }
 
-async function initPyodide() {
-  const output = document.getElementById('output');
+// Called from Python via `from js import window; window.pyodideWrite(...)`
+window.pyodideWrite = function (msg) {
+  try {
+    addToOutput(msg);
+  } catch (e) {
+    // ignore
+  }
+};
 
-  if (output) {
-    output.value = 'Initializing...\n';
+async function initPyodide() {
+  const runBtn = document.getElementById('runBtn');
+
+  if (runBtn) {
+    runBtn.disabled = true;
+    runBtn.textContent = 'Loading...';
   }
 
   const pyodide = await globalThis.loadPyodide();
 
-  if (output) {
-    output.value += 'Ready!\n';
+  if (runBtn) {
+    runBtn.disabled = false;
+    runBtn.textContent = 'Generate schedule';
   }
 
   return pyodide;
@@ -30,6 +43,13 @@ async function evaluatePython() {
   }
 
   const pyodide = await pyodideReadyPromise;
+
+  const runBtn = document.getElementById('runBtn');
+
+  if (runBtn) {
+    runBtn.disabled = true;
+    runBtn.textContent = 'Running...';
+  }
 
   try {
     addToOutput('Loading main.py...');
@@ -53,14 +73,31 @@ async function evaluatePython() {
     await pyodide.loadPackage(['numpy', 'scipy']);
 
     await pyodide.runPythonAsync(`
-import sys
-sys.path.insert(0, '/tmp')
-import main
-`);
+  import sys
+  from js import window
+  class _Writer:
+    def write(self, s):
+      if s:
+        try:
+          window.pyodideWrite(str(s))
+        except Exception:
+          pass
+    def flush(self):
+      pass
+  sys.stdout = _Writer()
+  sys.stderr = _Writer()
+  sys.path.insert(0, '/tmp')
+  import main
+  `);
 
     addToOutput('Executed main.py');
   } catch (err) {
     addToOutput(String(err));
+  } finally {
+    if (runBtn) {
+      runBtn.disabled = false;
+      runBtn.textContent = 'Run';
+    }
   }
 }
 

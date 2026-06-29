@@ -1,18 +1,37 @@
 <!doctype html>
 <html>
   <head>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="./index.css" />
+    <script
+      src="https://code.jquery.com/jquery-3.1.1.min.js"
+      integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.5.0/semantic.min.js"></script>
     <script src="https://cdn.jsdelivr.net/pyodide/v314.0.1/full/pyodide.js"></script>
   </head>
 
-  <body>
-    <p>
-      Click the button to run the script.
-    </p>
-    <button type="button" onclick="window.evaluatePython?.()">Run</button>
+  <body class="body">
+    <h1 class="ui header">Camp Scheduler</h1>
+    <p>Click the button below to generate an activities schedule.</p>
+    <button
+      id="runBtn"
+      type="button"
+      class="ui button primary"
+      onclick="window.evaluatePython?.()"
+      disabled
+    >
+      Loading...
+    </button>
     <br />
     <br />
     <div>Output:</div>
-    <textarea id="output" style="width: 100%;" rows="6" disabled></textarea>
+    <textarea id="output" style="width: 100%" rows="6" disabled></textarea>
 
     <script type="module" src="./index.js"></script>
   </body>
