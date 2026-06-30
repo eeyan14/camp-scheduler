@@ -65,6 +65,8 @@ girls_group_ages = {
 # gender_policy: one of: "Any", "Boys Only", "Girls Only"
 # age_range: array of [min, max] inclusive
 # schedule: availability of activity for sessions
+# (optional) gap: cooldown period in between consecutive sessions of the same activity
+# (optional) allowed_start_minutes: array of minute start times allowed for activity, e.g. [0, 30] = activity can start at XX:00 and XX:30
 activities_list = [
     {
         "name": "Archery",
@@ -129,6 +131,8 @@ activities_list = [
         "gender_policy": "Girls Only",
         "age_range": [6, 12],
         "schedule": ["Tue AM", "Tue PM", "Wed AM", "Wed PM", "Thu AM", "Thu PM"],
+        "gap": 4, # 1 hour gap
+        "allowed_start_minutes": [0] # only start at the top of the hour
     },
 ]
 

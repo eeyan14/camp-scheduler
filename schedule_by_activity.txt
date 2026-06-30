@@ -3,66 +3,62 @@ Camp Schedule - By Activity:
 ==================== ARCHERY ====================
 
   --- Mon PM ---
-    02:00 PM - 02:45 PM : B:J/J
-    02:00 PM - 02:45 PM : G:E/B
-    02:45 PM - 03:30 PM : G:A/K
-    03:30 PM - 04:15 PM : B:S/S
-    03:30 PM - 04:15 PM : G:H/A
-    04:45 PM - 05:30 PM : B:N/T
-    04:45 PM - 05:30 PM : G:A/A
-
-  --- Tue AM ---
-    10:00 AM - 10:45 AM : B:A/J
-    10:00 AM - 10:45 AM : B:B/A
+    02:15 PM - 03:00 PM : B:J/J
+    02:15 PM - 03:00 PM : G:A/K
+    03:00 PM - 03:45 PM : B:N/T
+    03:00 PM - 03:45 PM : G:J/R
+    03:45 PM - 04:30 PM : G:A/A
+    03:45 PM - 04:30 PM : G:E/B
+    04:30 PM - 05:15 PM : B:S/S
+    04:30 PM - 05:15 PM : B:D/J
+    05:15 PM - 06:00 PM : G:S/Z
 
   --- Tue PM ---
-    04:00 PM - 04:45 PM : B:S/W
-    04:00 PM - 04:45 PM : G:S/Z
-    04:45 PM - 05:30 PM : B:D/J
-    04:45 PM - 05:30 PM : G:J/R
+    04:00 PM - 04:45 PM : B:B/A
+    04:00 PM - 04:45 PM : G:H/A
+    05:00 PM - 05:45 PM : B:A/J
+    05:00 PM - 05:45 PM : B:S/W
 
 ==================== BIKING ====================
 
   --- Mon PM ---
-    02:15 PM - 03:00 PM : B:S/S
-    04:15 PM - 05:00 PM : B:A/J
-    05:15 PM - 06:00 PM : B:B/A
-    05:15 PM - 06:00 PM : G:S/Z
+    02:00 PM - 02:45 PM : B:N/T
+    03:00 PM - 03:45 PM : B:S/W
+    04:00 PM - 04:45 PM : B:B/A
+    04:00 PM - 04:45 PM : G:S/Z
+    04:45 PM - 05:30 PM : G:A/A
+
+  --- Tue AM ---
+    10:00 AM - 10:45 AM : B:A/J
+    10:00 AM - 10:45 AM : G:E/B
 
   --- Tue PM ---
-    04:00 PM - 04:45 PM : B:N/T
-    04:45 PM - 05:30 PM : B:J/J
-    04:45 PM - 05:30 PM : G:E/B
-
-  --- Wed AM ---
-    10:15 AM - 11:00 AM : G:A/A
+    04:30 PM - 05:15 PM : B:D/J
+    04:30 PM - 05:15 PM : G:J/R
+    05:15 PM - 06:00 PM : G:H/A
 
   --- Wed PM ---
-    04:00 PM - 04:45 PM : B:S/W
-
-  --- Thu AM ---
-    10:00 AM - 10:45 AM : G:A/K
-    10:00 AM - 10:45 AM : G:J/R
+    04:00 PM - 04:45 PM : G:A/K
 
   --- Thu PM ---
-    04:00 PM - 04:45 PM : B:D/J
-    04:00 PM - 04:45 PM : G:H/A
+    04:00 PM - 04:45 PM : B:S/S
+    05:15 PM - 06:00 PM : B:J/J
 
 ==================== CLIMBING (<10) ====================
 
   --- Mon PM ---
-    02:15 PM - 03:00 PM : B:A/J
-    02:15 PM - 03:00 PM : G:A/A
-    03:30 PM - 04:15 PM : B:J/J
-    04:15 PM - 05:00 PM : G:S/Z
-    05:15 PM - 06:00 PM : B:S/S
+    02:00 PM - 02:45 PM : B:A/J
+    02:00 PM - 02:45 PM : G:S/Z
+    03:15 PM - 04:00 PM : B:S/S
+    05:00 PM - 05:45 PM : B:B/A
 
   --- Tue AM ---
-    10:15 AM - 11:00 AM : G:E/B
+    10:00 AM - 10:45 AM : G:A/A
 
   --- Tue PM ---
-    05:00 PM - 05:45 PM : B:N/T
-    05:00 PM - 05:45 PM : B:B/A
+    04:00 PM - 04:45 PM : B:J/J
+    04:00 PM - 04:45 PM : G:E/B
+    05:15 PM - 06:00 PM : B:N/T
 
 ==================== CLIMBING (GRADS) ====================
 
@@ -76,48 +72,48 @@ Camp Schedule - By Activity:
 ==================== HORSES ====================
 
   --- Mon PM ---
-    02:00 PM - 02:30 PM : B:B/A
-    02:30 PM - 03:00 PM : B:S/W
-    03:00 PM - 03:30 PM : B:D/J
-    03:45 PM - 04:15 PM : G:A/A
-    04:30 PM - 05:00 PM : G:H/A
-    05:00 PM - 05:30 PM : G:J/R
+    02:00 PM - 02:30 PM : B:S/S
+    02:30 PM - 03:00 PM : B:B/A
+    03:15 PM - 03:45 PM : G:H/A
+    03:45 PM - 04:15 PM : B:D/J
+    04:15 PM - 04:45 PM : B:A/J
+    04:45 PM - 05:15 PM : B:J/J
+    05:15 PM - 05:45 PM : G:A/K
 
   --- Tue PM ---
-    04:00 PM - 04:30 PM : G:E/B
-    04:30 PM - 05:00 PM : B:A/J
+    04:15 PM - 04:45 PM : G:A/A
     05:00 PM - 05:30 PM : G:S/Z
+    05:30 PM - 06:00 PM : G:J/R
 
   --- Wed AM ---
-    10:00 AM - 10:30 AM : B:N/T
-    10:30 AM - 11:00 AM : G:A/K
+    10:15 AM - 10:45 AM : B:S/W
 
   --- Wed PM ---
-    04:00 PM - 04:30 PM : B:J/J
-    04:30 PM - 05:00 PM : B:S/S
+    04:00 PM - 04:30 PM : G:E/B
+    04:30 PM - 05:00 PM : B:N/T
 
 ==================== PORTRAITS ====================
 
   --- Tue AM ---
-    10:00 AM - 10:15 AM : B:N/T
-    10:15 AM - 10:30 AM : B:S/S
-    10:30 AM - 10:45 AM : B:J/J
-    10:45 AM - 11:00 AM : G:A/A
+    10:00 AM - 10:15 AM : B:S/S
+    10:15 AM - 10:30 AM : B:N/T
+    10:30 AM - 10:45 AM : B:B/A
+    10:45 AM - 11:00 AM : B:J/J
 
   --- Tue Lunch ---
-    12:30 PM - 12:45 PM : B:B/A
-    12:45 PM - 01:00 PM : B:A/J
+    12:30 PM - 12:45 PM : G:J/R
+    12:45 PM - 01:00 PM : B:S/W
     01:00 PM - 01:15 PM : B:D/J
 
   --- Wed AM ---
-    10:00 AM - 10:15 AM : G:A/K
-    10:15 AM - 10:30 AM : B:S/W
-    10:30 AM - 10:45 AM : G:E/B
-    10:45 AM - 11:00 AM : G:S/Z
+    10:00 AM - 10:15 AM : G:E/B
+    10:15 AM - 10:30 AM : G:A/A
+    10:30 AM - 10:45 AM : B:A/J
+    10:45 AM - 11:00 AM : G:A/K
 
   --- Wed Lunch ---
-    12:30 PM - 12:45 PM : G:H/A
-    12:45 PM - 01:00 PM : G:J/R
+    12:30 PM - 12:45 PM : G:S/Z
+    12:45 PM - 01:00 PM : G:H/A
 
 ==================== TEA PARTY ====================
 
@@ -125,17 +121,17 @@ Camp Schedule - By Activity:
     10:00 AM - 11:00 AM : G:S/Z
 
   --- Tue PM ---
-    04:45 PM - 05:45 PM : G:A/K
+    04:00 PM - 05:00 PM : G:A/K
 
   --- Wed AM ---
-    10:00 AM - 11:00 AM : G:H/A
+    10:00 AM - 11:00 AM : G:J/R
 
   --- Wed PM ---
-    04:00 PM - 05:00 PM : G:E/B
+    04:00 PM - 05:00 PM : G:A/A
 
   --- Thu AM ---
-    10:00 AM - 11:00 AM : G:A/A
+    10:00 AM - 11:00 AM : G:E/B
 
   --- Thu PM ---
-    05:00 PM - 06:00 PM : G:J/R
+    04:00 PM - 05:00 PM : G:H/A
 

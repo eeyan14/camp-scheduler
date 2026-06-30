@@ -36,6 +36,7 @@ def solver(day_blocks, boys_group_ages, girls_group_ages, activities_list, trave
     activity_gender_rules = {a["name"]: a["gender_policy"] for a in activities_list}
     activity_age_rules = {a["name"]: a["age_range"] for a in activities_list}
     activity_availability = {a["name"]: a["schedule"] for a in activities_list}
+    activity_start_mins = {a["name"]: a.get("allowed_start_minutes") for a in activities_list}
 
     # 4D Positional Flattening Helper Function
     def get_var_idx(g, a, d_name, t_idx):
@@ -83,11 +84,22 @@ def solver(day_blocks, boys_group_ages, girls_group_ages, activities_list, trave
                     for t in range(num_slots):
                         upper_bounds[get_var_idx(g, a, d, t)] = 0
                 else:
-                    # CRITICAL FIX: Kill trailing time slots where the activity
-                    # would run past the end of the day block.
-                    for t in range(num_slots - dur + 1, num_slots):
-                        upper_bounds[get_var_idx(g, a, d, t)] = 0
-
+                    # CRITICAL FIX & NEW CONSTRAINT: 
+                    # Kill trailing time slots AND slots that violate the minute-start rule
+                    for t in range(num_slots):
+                        # Parse the minute from the time string (e.g., "14:15" -> 15)
+                        time_str = day_blocks[d][t]
+                        minute = int(time_str.split(":")[1])
+                        
+                        is_trailing_slot = t > (num_slots - dur)
+                        
+                        # Only check minute validity if the activity has a restricted array
+                        allowed_mins = activity_start_mins[act_name]
+                        invalid_minute = (allowed_mins is not None) and (minute not in allowed_mins)
+                        
+                        if is_trailing_slot or invalid_minute:
+                            upper_bounds[get_var_idx(g, a, d, t)] = 0
+    
     bounds = Bounds(lower_bounds, upper_bounds)
     constraints = []
 
@@ -215,7 +227,7 @@ def solver(day_blocks, boys_group_ages, girls_group_ages, activities_list, trave
                                 add_constraint(row_dict, 0, max_grps)
 
     # G. Activity-Specific Cooldown / Gap Times
-    gap_rules = {"Tea Party": 4}
+    gap_rules = {a["name"]: a["gap"] for a in activities_list if "gap" in a}
 
     for a in range(num_activities):
         act_name = activities[a]
