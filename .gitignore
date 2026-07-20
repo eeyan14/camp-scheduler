@@ -1,4 +1,9 @@
 __pycache__/*
 *.pyc
 node_modules/
+
+# used only for github pages deploys
+/ui/.nojekyll
+
+# used only for typescript checking
 ui/dist/
