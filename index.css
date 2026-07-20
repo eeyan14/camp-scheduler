@@ -1,0 +1,51 @@
+body {
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+.schedule-section {
+  margin-top: 1.5rem;
+}
+
+.group-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+.group-grid > .ui.card {
+  height: fit-content;
+  margin-top: 0;
+}
+
+@media print {
+  body {
+    padding: 0;
+    color: #000;
+    background: #fff;
+  }
+
+  .ui.button,
+  .ui.header,
+  p {
+    display: none !important;
+  }
+
+  .schedule-section {
+    page-break-after: always;
+    break-after: page;
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+
+  .schedule-section:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .group-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+}
