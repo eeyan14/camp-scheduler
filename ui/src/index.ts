@@ -1,6 +1,15 @@
-let pyodideReadyPromise = null;
+import { escapeHtml } from './util.js';
 
-function setOutputContent(html) {
+declare global {
+  interface Window {
+    pyodideWrite?: (msg: string) => void;
+    evaluatePython?: () => Promise<void>;
+  }
+}
+
+let pyodideReadyPromise: Promise<any> | null = null;
+
+function setOutputContent(html: string): void {
   const output = document.getElementById('output');
 
   if (!output) {
@@ -10,29 +19,20 @@ function setOutputContent(html) {
   output.innerHTML = html;
 }
 
-function escapeHtml(value) {
-  return String(value)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#39;');
-}
-
-function renderScheduleResult(result) {
+function renderScheduleResult(result: any): string {
   if (!result || !result.success) {
     return `<p>${escapeHtml(result?.message || 'No schedule data available.')}</p>`;
   }
 
   const activityNames = result.activities || [];
   const masterRows = (result.master_schedule || [])
-    .map((row) => {
+    .map((row: any) => {
       const cells = [
         `<td>${escapeHtml(row.day)}</td>`,
         `<td>${escapeHtml(row.time)}</td>`,
       ];
 
-      activityNames.forEach((activity) => {
+      activityNames.forEach((activity: string) => {
         const groups = row.activities?.[activity] || [];
         const value = groups.length ? groups.join(', ') : '---';
         cells.push(`<td>${escapeHtml(value)}</td>`);
@@ -43,10 +43,10 @@ function renderScheduleResult(result) {
     .join('');
 
   const perGroupItems = Object.entries(result.per_group || {})
-    .filter(([, events]) => events && events.length)
+    .filter(([, events]) => events && (events as any[]).length)
     .map(([group, events]) => {
-      const dayGroups = {};
-      events.forEach((event) => {
+      const dayGroups: Record<string, string[]> = {};
+      (events as any[]).forEach((event) => {
         if (!dayGroups[event.day]) {
           dayGroups[event.day] = [];
         }
@@ -76,10 +76,10 @@ function renderScheduleResult(result) {
     .join('');
 
   const perActivityItems = Object.entries(result.per_activity || {})
-    .filter(([, events]) => events && events.length)
+    .filter(([, events]) => events && (events as any[]).length)
     .map(([activity, events]) => {
-      const dayGroups = {};
-      events.forEach((event) => {
+      const dayGroups: Record<string, string[]> = {};
+      (events as any[]).forEach((event) => {
         if (!dayGroups[event.day]) {
           dayGroups[event.day] = [];
         }
@@ -116,7 +116,7 @@ function renderScheduleResult(result) {
           <tr>
             <th>Day</th>
             <th>Time</th>
-            ${activityNames.map((activity) => `<th>${escapeHtml(activity)}</th>`).join('')}
+            ${activityNames.map((activity: string) => `<th>${escapeHtml(activity)}</th>`).join('')}
           </tr>
         </thead>
         <tbody>${masterRows}</tbody>
@@ -135,24 +135,23 @@ function renderScheduleResult(result) {
   `;
 }
 
-// Called from Python via `from js import window; window.pyodideWrite(...)`
-window.pyodideWrite = function (msg) {
+window.pyodideWrite = function (msg: string): void {
   try {
     setOutputContent(`<p>${escapeHtml(msg)}</p>`);
-  } catch (e) {
+  } catch {
     // ignore
   }
 };
 
-async function initPyodide() {
-  const runBtn = document.getElementById('runBtn');
+async function initPyodide(): Promise<any> {
+  const runBtn = document.getElementById('runBtn') as HTMLButtonElement | null;
 
   if (runBtn) {
     runBtn.disabled = true;
     runBtn.textContent = 'Loading script...';
   }
 
-  const pyodide = await globalThis.loadPyodide();
+  const pyodide = await (globalThis as any).loadPyodide();
 
   if (runBtn) {
     runBtn.disabled = false;
@@ -162,14 +161,13 @@ async function initPyodide() {
   return pyodide;
 }
 
-async function evaluatePython() {
+async function evaluatePython(): Promise<void> {
   if (!pyodideReadyPromise) {
     return;
   }
 
   const pyodide = await pyodideReadyPromise;
-
-  const runBtn = document.getElementById('runBtn');
+  const runBtn = document.getElementById('runBtn') as HTMLButtonElement | null;
 
   if (runBtn) {
     runBtn.disabled = true;
@@ -190,6 +188,7 @@ async function evaluatePython() {
     const mainSource = await mainResponse.text();
     const utilsSource = await utilsResponse.text();
     const solverSource = await solverResponse.text();
+
     pyodide.FS.mkdirTree('/tmp');
     pyodide.FS.writeFile('/tmp/main.py', mainSource);
     pyodide.FS.writeFile('/tmp/schedule_utils.py', utilsSource);
@@ -232,3 +231,5 @@ window.evaluatePython = evaluatePython;
 document.addEventListener('DOMContentLoaded', () => {
   pyodideReadyPromise = initPyodide();
 });
+
+export {};

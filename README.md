@@ -6,6 +6,8 @@ Script and helpful stuff for scheduling activities during free time blocks at ca
 
 ### Frontend
 
+Install Node dependencies with `yarn install`.
+
 To start the UI, run `yarn serve`, then open up http://localhost:8000/ui. You will need to refresh the page to see new changes.
 
 ### Python

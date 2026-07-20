@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "python3 -m http.server 8000"
+    "serve": "python3 -m http.server 8000",
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
   }
 }
