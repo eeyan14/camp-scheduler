@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "python3 -m http.server 8000",
+    "serve": "tsc --watch --preserveWatchOutput & python3 -m http.server 8000",
     "build": "tsc"
   },
   "devDependencies": {

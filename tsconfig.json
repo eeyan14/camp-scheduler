@@ -4,8 +4,8 @@
     "module": "es2020",
     "moduleResolution": "bundler",
     "lib": ["dom", "es2021"],
-    "rootDir": "ui/src",
-    "outDir": "ui/dist",
+    "rootDir": "src",
+    "outDir": "dist",
     "strict": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
@@ -13,5 +13,5 @@
     "sourceMap": true,
     "noEmitOnError": true
   },
-  "include": ["ui/src/**/*"]
+  "include": ["src/**/*"]
 }

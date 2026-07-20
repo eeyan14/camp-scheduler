@@ -1,15 +1,4 @@
-import { escapeHtml } from './util.js';
-
-declare global {
-  interface Window {
-    pyodideWrite?: (msg: string) => void;
-    evaluatePython?: () => Promise<void>;
-  }
-}
-
-let pyodideReadyPromise: Promise<any> | null = null;
-
-function setOutputContent(html: string): void {
+export function setOutputContent(html: string): void {
   const output = document.getElementById('output');
 
   if (!output) {
@@ -19,7 +8,16 @@ function setOutputContent(html: string): void {
   output.innerHTML = html;
 }
 
-function renderScheduleResult(result: any): string {
+export function escapeHtml(value: unknown): string {
+  return String(value)
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
+}
+
+export function renderScheduleResult(result: any): string {
   if (!result || !result.success) {
     return `<p>${escapeHtml(result?.message || 'No schedule data available.')}</p>`;
   }
@@ -134,102 +132,3 @@ function renderScheduleResult(result: any): string {
     </section>
   `;
 }
-
-window.pyodideWrite = function (msg: string): void {
-  try {
-    setOutputContent(`<p>${escapeHtml(msg)}</p>`);
-  } catch {
-    // ignore
-  }
-};
-
-async function initPyodide(): Promise<any> {
-  const runBtn = document.getElementById('runBtn') as HTMLButtonElement | null;
-
-  if (runBtn) {
-    runBtn.disabled = true;
-    runBtn.textContent = 'Loading script...';
-  }
-
-  const pyodide = await (globalThis as any).loadPyodide();
-
-  if (runBtn) {
-    runBtn.disabled = false;
-    runBtn.textContent = 'Generate schedule';
-  }
-
-  return pyodide;
-}
-
-async function evaluatePython(): Promise<void> {
-  if (!pyodideReadyPromise) {
-    return;
-  }
-
-  const pyodide = await pyodideReadyPromise;
-  const runBtn = document.getElementById('runBtn') as HTMLButtonElement | null;
-
-  if (runBtn) {
-    runBtn.disabled = true;
-    runBtn.textContent = 'Running...';
-  }
-
-  try {
-    const [mainResponse, utilsResponse, solverResponse] = await Promise.all([
-      fetch('../main.py'),
-      fetch('../schedule_utils.py'),
-      fetch('../solver.py'),
-    ]);
-
-    if (!mainResponse.ok || !utilsResponse.ok || !solverResponse.ok) {
-      throw new Error('Could not load Python file(s)');
-    }
-
-    const mainSource = await mainResponse.text();
-    const utilsSource = await utilsResponse.text();
-    const solverSource = await solverResponse.text();
-
-    pyodide.FS.mkdirTree('/tmp');
-    pyodide.FS.writeFile('/tmp/main.py', mainSource);
-    pyodide.FS.writeFile('/tmp/schedule_utils.py', utilsSource);
-    pyodide.FS.writeFile('/tmp/solver.py', solverSource);
-
-    await pyodide.loadPackage(['numpy', 'scipy']);
-
-    const result = await pyodide.runPythonAsync(`
-  import sys
-  from js import window
-  class _Writer:
-    def write(self, s):
-      if s:
-        try:
-          window.pyodideWrite(str(s))
-        except Exception:
-          pass
-    def flush(self):
-      pass
-  sys.stdout = _Writer()
-  sys.stderr = _Writer()
-  sys.path.insert(0, '/tmp')
-  import main
-  main.main(output='ui')
-  `);
-
-    setOutputContent(renderScheduleResult(result));
-  } catch (err) {
-    setOutputContent(`<p>${escapeHtml(String(err))}</p>`);
-  } finally {
-    if (runBtn) {
-      runBtn.disabled = false;
-      runBtn.textContent = 'Run';
-    }
-  }
-}
-
-window.evaluatePython = evaluatePython;
-
-document.addEventListener('DOMContentLoaded', () => {
-  pyodideReadyPromise = initPyodide();
-});
-
-export {};

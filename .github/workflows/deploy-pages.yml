@@ -31,14 +31,14 @@ jobs:
 
       - name: Prepare Pages artifact
         run: |
-          touch ui/.nojekyll
+          touch ./.nojekyll
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./ui
+          publish_dir: ./
           force_orphan: true
           user_name: github-actions[bot]
           user_email: 41898282+github-actions[bot]@users.noreply.github.com

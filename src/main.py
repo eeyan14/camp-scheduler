@@ -207,6 +207,7 @@ def main(output="file"):
         )
         schedule_utils.write_per_group_schedule_to_file(events, groups)
         schedule_utils.write_per_activity_schedule_to_file(events, activities)
+        print(f"Schedules successfully written to {os.getcwd()}")
         return {
             "success": True,
             "mode": "file",
