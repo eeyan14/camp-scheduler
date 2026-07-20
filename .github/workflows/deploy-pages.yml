@@ -12,6 +12,8 @@ permissions:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      PAGES_DIR: ./.pages
 
     steps:
       - name: Checkout repository
@@ -29,16 +31,21 @@ jobs:
       - name: Build UI
         run: yarn build
 
-      - name: Prepare Pages artifact
+      - name: Move all necessary files into ${{ env.PAGES_DIR }}
         run: |
-          touch ./.nojekyll
+          mkdir -p "$PAGES_DIR"
+          cp -R ./dist "$PAGES_DIR/dist"
+          cp ./index.html "$PAGES_DIR/index.html"
+          cp ./index.css "$PAGES_DIR/index.css"
+          cp -R ./src "$PAGES_DIR/src"
+          touch "$PAGES_DIR/.nojekyll"
 
       - name: Deploy to gh-pages branch
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_branch: gh-pages
-          publish_dir: ./
+          publish_dir: ${{ env.PAGES_DIR }}
           force_orphan: true
           user_name: github-actions[bot]
           user_email: 41898282+github-actions[bot]@users.noreply.github.com
