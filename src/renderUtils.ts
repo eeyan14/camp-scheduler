@@ -49,25 +49,28 @@ export function renderScheduleResult(result: any): string {
           dayGroups[event.day] = [];
         }
         dayGroups[event.day].push(
-          `<li>${escapeHtml(event.start_str)} - ${escapeHtml(event.end_str)} : ${escapeHtml(event.activity)}</li>`,
+          `<div class="item">${escapeHtml(event.start_str)} - ${escapeHtml(event.end_str)} : ${escapeHtml(event.activity)}</div>`,
         );
       });
 
       const daySections = Object.entries(dayGroups)
         .map(
-          ([day, items]) => `
-          <div class="group-day-block">
-            <div class="group-day-title">${escapeHtml(day)}</div>
-            <ul class="group-day-list">${items.join('')}</ul>
+          ([day, items], index) => `
+          <div class="day-section">
+            <div class="ui tiny header">${escapeHtml(day)}</div>
+            <div class="ui relaxed list">${items.join('')}</div>
+            ${index < Object.keys(dayGroups).length - 1 ? '<div class="ui divider"></div>' : ''}
           </div>
         `,
         )
         .join('');
 
       return `
-        <div class="group-card">
-          <div class="group-title">${escapeHtml(group)}</div>
-          <div class="group-day-grid">${daySections}</div>
+        <div class="ui card fluid">
+          <div class="content">
+            <div class="header">${escapeHtml(group)}</div>
+          </div>
+          <div class="content">${daySections}</div>
         </div>
       `;
     })
@@ -82,25 +85,28 @@ export function renderScheduleResult(result: any): string {
           dayGroups[event.day] = [];
         }
         dayGroups[event.day].push(
-          `<li>${escapeHtml(event.start_str)} - ${escapeHtml(event.end_str)} : ${escapeHtml(event.group)}</li>`,
+          `<div class="item">${escapeHtml(event.start_str)} - ${escapeHtml(event.end_str)} : ${escapeHtml(event.group)}</div>`,
         );
       });
 
       const daySections = Object.entries(dayGroups)
         .map(
-          ([day, items]) => `
-          <div class="group-day-block">
-            <div class="group-day-title">${escapeHtml(day)}</div>
-            <ul class="group-day-list">${items.join('')}</ul>
+          ([day, items], index) => `
+          <div class="day-section">
+            <div class="ui tiny header">${escapeHtml(day)}</div>
+            <div class="ui relaxed list">${items.join('')}</div>
+            ${index < Object.keys(dayGroups).length - 1 ? '<div class="ui divider"></div>' : ''}
           </div>
         `,
         )
         .join('');
 
       return `
-        <div class="group-card">
-          <div class="group-title">${escapeHtml(activity)}</div>
-          <div class="group-day-grid">${daySections}</div>
+        <div class="ui card fluid">
+          <div class="content">
+            <div class="header">${escapeHtml(activity)}</div>
+          </div>
+          <div class="content">${daySections}</div>
         </div>
       `;
     })
@@ -108,8 +114,8 @@ export function renderScheduleResult(result: any): string {
 
   return `
     <section class="schedule-section">
-      <h3>Aggregate Schedule</h3>
-      <table class="schedule-table">
+      <h3 class="ui header">Aggregate Schedule</h3>
+      <table class="ui celled striped table unstackable">
         <thead>
           <tr>
             <th>Day</th>
@@ -122,13 +128,13 @@ export function renderScheduleResult(result: any): string {
     </section>
 
     <section class="schedule-section">
-      <h3>Per Group</h3>
-      <div class="group-grid">${perGroupItems || '<div class="muted">No groups scheduled.</div>'}</div>
+      <h3 class="ui header">Per Group</h3>
+      <div class="group-grid">${perGroupItems || '<div class="ui message">No groups scheduled.</div>'}</div>
     </section>
 
     <section class="schedule-section">
-      <h3>Per Activity</h3>
-      <div class="group-grid">${perActivityItems || '<div class="muted">No activities scheduled.</div>'}</div>
+      <h3 class="ui header">Per Activity</h3>
+      <div class="group-grid">${perActivityItems || '<div class="ui message">No activities scheduled.</div>'}</div>
     </section>
   `;
 }
