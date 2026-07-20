@@ -1,10 +1,10 @@
-import numpy as np
 import os
+from datetime import datetime, timedelta
+
+import numpy as np
 import schedule_utils
 from solver import solver
-from datetime import datetime, timedelta
-from scipy.optimize import milp, Bounds, LinearConstraint
-from scipy.sparse import csr_matrix
+
 
 # ==========================================
 # 1. SETUP PARAMETERS (With Comprehensive Examples)
@@ -131,8 +131,8 @@ activities_list = [
         "gender_policy": "Girls Only",
         "age_range": [6, 12],
         "schedule": ["Tue AM", "Tue PM", "Wed AM", "Wed PM", "Thu AM", "Thu PM"],
-        "gap": 4, # 1 hour gap
-        "allowed_start_minutes": [0] # only start at the top of the hour
+        "gap": 4,  # 1 hour gap
+        "allowed_start_minutes": [0],  # only start at the top of the hour
     },
 ]
 
@@ -155,21 +155,28 @@ travel_matrix = np.array(
     ]
 )
 
-# ==========================================
-# 2-4. SOLVER EXECUTION
-# ==========================================
-# Pass the inputs to the solver
-res, inputs = solver(day_blocks, boys_group_ages, girls_group_ages, activities_list, travel_matrix)
 
-# ==========================================
-# 5. USER-FRIENDLY STRING FORMATTED OUTPUT
-# ==========================================
+def main(output="file"):
+    if output not in {"file", "ui"}:
+        raise ValueError("output must be either 'file' or 'ui'")
 
+    res, inputs = solver(
+        day_blocks, boys_group_ages, girls_group_ages, activities_list, travel_matrix
+    )
 
-if res.success:
-    print("Camp Schedule Found. Generating files...\n")
+    if not res.success:
+        return {"success": False, "mode": output, "message": res.message}
+
     sol = res.x
-    num_groups, num_activities, activity_durations, activities, days, get_var_idx, groups = inputs.values()
+    (
+        num_groups,
+        num_activities,
+        activity_durations,
+        activities,
+        days,
+        get_var_idx,
+        groups,
+    ) = inputs.values()
 
     # Extract all scheduled events
     events = []
@@ -194,55 +201,26 @@ if res.success:
                             }
                         )
 
-    # ---------------------------------------------------------
-    # 1. FILE: CURRENT PRINTED CONTENT (By Time)
-    # ---------------------------------------------------------
-    schedule_utils.generate_markdown_schedule(events, days, day_blocks, activities)
+    if output == "file":
+        schedule_utils.write_master_schedule_to_file(
+            events, days, day_blocks, activities
+        )
+        schedule_utils.write_per_group_schedule_to_file(events, groups)
+        schedule_utils.write_per_activity_schedule_to_file(events, activities)
+        return {
+            "success": True,
+            "mode": "file",
+            "message": f"Schedules successfully written to {os.getcwd()}",
+        }
 
-    # ---------------------------------------------------------
-    # 2. FILE: PER-GROUP SCHEDULE
-    # ---------------------------------------------------------
-    with open("schedule_by_group.txt", "w") as f2:
-        f2.write("Camp Schedule - By Group:\n\n")
-        for g_name in groups:
-            f2.write(f"==================== {g_name.upper()} ====================\n")
-            g_events = [e for e in events if e["group"] == g_name]
-            g_events.sort(key=lambda x: (x["day_idx"], x["time_idx"]))
+    return {
+        "success": True,
+        "mode": "ui",
+        **schedule_utils.build_schedule_payload(
+            events, days, day_blocks, activities, groups
+        ),
+    }
 
-            if not g_events:
-                f2.write("  No activities scheduled.\n")
-            else:
-                current_day = ""
-                for e in g_events:
-                    if e["day"] != current_day:
-                        f2.write(f"\n  --- {e['day']} ---\n")
-                        current_day = e["day"]
-                    f2.write(
-                        f"    {e['start_str']} - {e['end_str']} : {e['activity']}\n"
-                    )
-            f2.write("\n")
 
-    # ---------------------------------------------------------
-    # 3. FILE: PER-ACTIVITY SCHEDULE
-    # ---------------------------------------------------------
-    with open("schedule_by_activity.txt", "w") as f3:
-        f3.write("Camp Schedule - By Activity:\n\n")
-        for a_name in activities:
-            f3.write(f"==================== {a_name.upper()} ====================\n")
-            a_events = [e for e in events if e["activity"] == a_name]
-            a_events.sort(key=lambda x: (x["day_idx"], x["time_idx"]))
-
-            if not a_events:
-                f3.write("  No groups scheduled.\n")
-            else:
-                current_day = ""
-                for e in a_events:
-                    if e["day"] != current_day:
-                        f3.write(f"\n  --- {e['day']} ---\n")
-                        current_day = e["day"]
-                    f3.write(f"    {e['start_str']} - {e['end_str']} : {e['group']}\n")
-            f3.write("\n")
-
-    print(f"Schedules successfully written to {os.getcwd()}")
-else:
-    print("Optimization failed to find a valid solution:", res.message)
+if __name__ == "__main__":
+    main(output="file")
